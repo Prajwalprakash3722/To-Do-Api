@@ -6,6 +6,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'thisshouldbechangedaftercloningfromgit'
 db = SQLAlchemy(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///demo.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
 class Task(db.Model):
@@ -13,6 +14,9 @@ class Task(db.Model):
     title = db.Column(db.String(80))
     description = db.Column(db.String(120))
     status = db.Column(db.String(120), nullable=False, default=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=db.func.now())
+    updated_at = db.Column(db.DateTime, nullable=False,
+                           default=db.func.now(), onupdate=db.func.now())
 
 
 def save_data(title, description):
@@ -57,6 +61,8 @@ def tasks():
                 'title': task.title,
                 'description': task.description,
                 'status': task.status,
+                'created_at': task.created_at,
+                'updated_at': task.updated_at
             }
             result.append(task_data)
         return jsonify(result)
@@ -111,4 +117,4 @@ def update_task(id):
     if not tasks:
         return jsonify({"message": "Task not found"})
     update_status(id)
-    return jsonify({"message": "Task updated successfully"})
+    return jsonify({"message": "Task Completed successfully"})
