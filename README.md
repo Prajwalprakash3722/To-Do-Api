@@ -1,8 +1,6 @@
-# Flask_SQl_Boilerplate
+# To Do App Api
 
-## Description
-
-This repository is a boilerplate for creating a flask application with SQLAlchemy.
+## Installation
 
 - Steps:
   - Clone this repository
@@ -17,3 +15,24 @@ This repository is a boilerplate for creating a flask application with SQLAlchem
     from app import db
     db.create_all()
     ```
+
+## Running the app
+
+```bash
+./run.sh
+```
+
+### Functionalities
+
+- Can Create a User
+- Can Login using JWT
+- Can View the Tasks of a User using JWT
+- CRUD of task only with authenticated state
+
+(Yet to implement)
+
+- Update and Delete of User
+
+#### Frontend
+
+[React TO DO App](https://github.com/Prajwalprakash3722/React_To_Do_App/tree/to_do)
